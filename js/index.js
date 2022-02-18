@@ -1,22 +1,19 @@
-console.log("javascript included");
-
+// getting the html part
 let newsAccordian = document.getElementById("newsAccordian");
 
+
+// initialising ajax get request to fetch form api
 const xhr = new XMLHttpRequest();
 let method = "GET";
+
 let url = "https://newsapi.org/v2/top-headlines?country=in&apiKey=5abd17a1f07f443e9854b6dda904c254";
 xhr.open(method, url, true);
 xhr.onload = function(){
     if(this.status === 200){
-        console.log("wooo this is marverllous brother");
         let result = JSON.parse(this.responseText);
-        console.log(result);
         result = result.articles;
-        console.log(result);
         let news = "";
         for (var i = 0; i < result.length; i++){
-            // console.log(result[i].title);
-            // console.log(result[i].content);
             news += `<div class="accordion-item bg-dark text-white">
                             <h2 class="accordion-header" id="heading${i}">
                                 <button class="accordion-button collapsed bg-danger" type="button" data-bs-toggle="collapse"
@@ -39,5 +36,6 @@ xhr.onload = function(){
     }
 }
 
+// sending the request
 xhr.send();
 
